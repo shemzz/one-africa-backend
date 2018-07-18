@@ -39,6 +39,5 @@ app.get('/',(req, res) =>{
     res.send('shemzz has started working oh!');
 });
 
-app.listen(PORT, ()=>{
-    console.log('Server has been started at port: ' + PORT);
-});
+app.listen(process.env.PORT || PORT)
+
