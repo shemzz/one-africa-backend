@@ -3,7 +3,6 @@
 var express = require ('express');
 var mongoose = require('mongoose');
 var bodyparser = require ('body-parser');
-var passport = require ('passport');
 var cors = require('cors');
 
 var app = express();
@@ -11,7 +10,8 @@ var app = express();
 const route = require('./routes/route');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost:27017/one-africa-app');
+// mongoose.connect('mongodb://localhost:27017/artists');
+mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
 
 
 // on connection
@@ -29,9 +29,6 @@ const PORT =  3000;
 
 // adding middleware - cors
 app.use(cors());
-
-// passport
-app.use(passport.initialize());
 
 // body parser
 app.use(bodyparser.json());
