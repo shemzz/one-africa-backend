@@ -8,7 +8,7 @@ const artistschema = mongoose.Schema({
     },
 
     artistPhoto: {
-        type: Stringe
+        type: String,
     },
 
     artistBio: {
