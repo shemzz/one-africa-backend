@@ -10,7 +10,8 @@ var app = express();
 const route = require('./routes/route');
 
 // connect to mongodb
-mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
+// mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
+mongoose.connect('mongodb://localhost:27017/artistlist');
 
 
 // on connection
@@ -35,7 +36,7 @@ app.use(bodyparser.json());
 app.use('/api', route);
 
 app.get('/',(req, res) =>{
-    res.send('oneafrica has started working oh!');
+    res.send('oneafrica has started working but is not Posting!');
 });
 
 app.listen(process.env.PORT || PORT)

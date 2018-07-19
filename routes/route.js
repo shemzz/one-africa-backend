@@ -3,7 +3,7 @@
 const express = require('express');
 var router = express.Router();
 
-const ArtistM = require('../modules/artist');
+const Artist = require('../models/artist');
 
 // retr eving data from database 
 router.get('/show_artist', (req, res, next) => {
