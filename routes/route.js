@@ -5,7 +5,16 @@ var router = express.Router();
 
 const Artist = require('../models/artist');
 
-// retr eving data from database 
+var storage = multer.diskStorage({
+    destination: 'assets/uploads/',
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now()+ '.jpg')
+    }
+})
+
+var upload = multer({ storage: storage });
+
+// retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
         if (err) { 

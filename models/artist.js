@@ -7,11 +7,13 @@ const artistschema = mongoose.Schema({
         type: String,
         required: true
     },
-
+    slug: {
+        type: String,
+        required: true
+    },
     artistPhoto: {
         type: String
     },
-
     artistBio: {
         type: String,
         required: true
