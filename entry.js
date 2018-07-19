@@ -10,8 +10,8 @@ var app = express();
 const route = require('./routes/route');
 
 // connect to mongodb
-// mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
-mongoose.connect('mongodb://localhost:27017/artistlist');
+mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
+// mongoose.connect('mongodb://localhost:27017/artistlist');
 
 
 // on connection
