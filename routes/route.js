@@ -30,6 +30,7 @@ router.post('/add_artist', (req, res, next) => {
     let newArtist = new Artist({
         artistName: req.body.artistName,
         artistPhoto: req.body.artistPhoto,
+        slug: req.body.slug,
        artistBio: req.body.artistBio
     });
     newArtist.save((err, artist) => {
@@ -50,6 +51,7 @@ router.put('/update_artist/:id', (req, res, next) => {
         }, {
             $set: {
                 artistName: req.body.artistName,
+                slug: req.body.slug,
                 artistPhoto: req.body.artistPhoto,
                artistBio: req.body.artistBio
             }
