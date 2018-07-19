@@ -3,12 +3,12 @@
 const express = require('express');
 var router = express.Router();
 
-const Artist = require('../modules/artist');
+const ArtistM = require('../modules/artist');
 
-// retr`i`eving data from database
+// retr eving data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
-        if (err) {
+        if (err) { 
             res.json(err);
         } else {
             res.json(artists);

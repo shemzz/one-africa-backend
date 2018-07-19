@@ -10,13 +10,12 @@ var app = express();
 const route = require('./routes/route');
 
 // connect to mongodb
-// mongoose.connect('mongodb://localhost:27017/artists');
 mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
 
 
 // on connection
 mongoose.connection.on('conected', ()=>{
-    console.log('MongoDB conected at port 27017');
+    console.log('MongoDB conected to heroku app');
 });
 
 // on connection error
@@ -36,7 +35,7 @@ app.use(bodyparser.json());
 app.use('/api', route);
 
 app.get('/',(req, res) =>{
-    res.send('shemzz has started working oh!');
+    res.send('oneafrica has started working oh!');
 });
 
 app.listen(process.env.PORT || PORT)

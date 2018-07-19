@@ -4,15 +4,17 @@ const mongoose = require('mongoose');
 
 const artistschema = mongoose.Schema({
     artistName: {
-        type: String
+        type: String,
+        required: true
     },
 
     artistPhoto: {
-        type: String,
+        type: String
     },
 
     artistBio: {
-        type: String
+        type: String,
+        required: true
     }
 
 });
