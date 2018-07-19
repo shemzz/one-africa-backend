@@ -5,15 +5,6 @@ var router = express.Router();
 
 const Artist = require('../models/artist');
 
-var storage = multer.diskStorage({
-    destination: 'assets/uploads/',
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now()+ '.jpg')
-    }
-})
-
-var upload = multer({ storage: storage });
-
 // retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
@@ -29,8 +20,8 @@ router.get('/show_artist', (req, res, next) => {
 router.post('/add_artist', (req, res, next) => {
     let newArtist = new Artist({
         artistName: req.body.artistName,
-        artistPhoto: req.body.artistPhoto,
         slug: req.body.slug,
+        artistPhoto: req.body.artistPhoto,
        artistBio: req.body.artistBio
     });
     newArtist.save((err, artist) => {
