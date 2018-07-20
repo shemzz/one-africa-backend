@@ -22,6 +22,7 @@ router.get('/show_artist', (req, res, next) => {
 router.post('/add_artist', (req, res, next) => {
     let newArtist = new Artist({
         artistName: req.body.artistName,
+        slug: req.body.slug,
         artistPhoto: req.body.artistPhoto,
        artistBio: req.body.artistBio
     });
