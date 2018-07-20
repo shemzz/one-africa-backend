@@ -3,7 +3,6 @@
 var express = require ('express');
 var mongoose = require('mongoose');
 var bodyparser = require ('body-parser');
-var fs = require('fs');
 var cors = require('cors');
 
 var app = express();
@@ -37,7 +36,7 @@ app.use(bodyparser.json());
 app.use('/api', route);
 
 app.get('/',(req, res) =>{
-    res.send('server started');
+    res.send('server started already');
 });
 
 app.listen(process.env.PORT || PORT)
