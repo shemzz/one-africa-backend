@@ -5,8 +5,6 @@ var router = express.Router();
 
 const Artist = require('../models/artist');
 
-var upload = multer({ storage: storage });
-
 // retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
