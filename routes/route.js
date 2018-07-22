@@ -73,6 +73,7 @@ router.get('/all_events', (req, res, next) => {
 oagevents.find(function (err, oagevents) {
         if (err) { 
             res.json(err);
+            console.log(err);
         } else {
             res.json(oagevents);
         }
