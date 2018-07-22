@@ -4,9 +4,8 @@ const express = require('express');
 var router = express.Router();
 
 const Artist = require('../models/artist');
-const Eventz = require('../models/events');
 
-// retrieving artist data from database 
+// retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
         if (err) { 
@@ -16,7 +15,6 @@ router.get('/show_artist', (req, res, next) => {
         }
     });
 });
-
 
 // add new artist
 router.post('/add_artist', (req, res, next) => {
