@@ -4,8 +4,9 @@ const express = require('express');
 var router = express.Router();
 
 const Artist = require('../models/artist');
+const OagEvent = require('../models/events');
 
-// retrieving data from database 
+// retrieving artist data from database 
 router.get('/show_artist', (req, res, next) => {
     Artist.find(function (err, artists) {
         if (err) { 
@@ -67,4 +68,40 @@ router.delete('/remove_artist/:id', (req, res, next) => {
         });
 });
 
+// retrieving events data from database 
+router.get('/all_events', (req, res, next) => {
+    events.find(function (err, events) {
+        if (err) { 
+            res.json(err);
+        } else {
+            res.json(events);
+        }
+    });
+});
+
+// add new event
+router.post('/add_event', (req, res, next) => {
+    let newEvent = new OagEvent({
+        name: req.body.name,
+        slug: req.body.slug,
+        photo: req.body.photo,
+       location: req.body.location,
+       address: req.body.address,
+       date: req.body.date,
+       ticket: {
+        vendor: req.body.vendor,
+       link: req.body.link,
+       vendorphoto: req.body.vendorphoto
+       }
+    });
+    newEvent.save((err, events) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json({
+                msg: "Artist has been added successfully"
+            });
+        }
+    });
+});
 module.exports = router;
