@@ -70,11 +70,11 @@ router.delete('/remove_artist/:id', (req, res, next) => {
 
 // retrieving events data from database 
 router.get('/all_events', (req, res, next) => {
-    events.find(function (err, events) {
+oagevents.find(function (err, oagevents) {
         if (err) { 
             res.json(err);
         } else {
-            res.json(events);
+            res.json(oagevents);
         }
     });
 });
@@ -94,12 +94,12 @@ router.post('/add_event', (req, res, next) => {
        vendorphoto: req.body.vendorphoto
        }
     });
-    newEvent.save((err, events) => {
+    newEvent.save((err, oagevents) => {
         if (err) {
             res.json(err);
         } else {
             res.json({
-                msg: "Artist has been added successfully"
+                msg: "Event has been added successfully"
             });
         }
     });
