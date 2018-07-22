@@ -27,7 +27,6 @@ const eventschema = mongoose.Schema({
     required: true
   },
   ticket: {
-    type: Object,
     required: false,
     vendor: {
       type: String,
