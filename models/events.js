@@ -26,21 +26,18 @@ const eventschema = mongoose.Schema({
     type: String,
     required: true
   },
-  ticket: {
-    required: false,
-    vendor: {
-      type: String,
-      required: true
-    },
-    link: {
-      type: String,
-      required: true
-    },
-    vendorPhoto: {
-      type: String,
-      required: true
-    }
-  }
+  vendorphoto : {
+    type : mongoose.Schema.Type.ObjectId,
+    ref:'ticket'
+        }
 });
 
 const OagEvent = (module.exports = mongoose.model("OagEvent", eventschema));
+
+// ticket model
+var ticketSchema = new Schema({
+    vendor: [String],
+   link: [String],
+   vendorphoto: [String]
+     })
+mongoose.model('ticket', ticketSchema, 'ticket')
