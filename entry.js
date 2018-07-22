@@ -8,6 +8,7 @@ var cors = require('cors');
 var app = express();
 
 const route = require('./routes/route');
+const eventroute =  require('./routes/event-route');
 
 // connect to mongodb
 mongoose.connect('mongodb://shemzz:123456de@ds131531.mlab.com:31531/oneafricaglobal');
@@ -34,6 +35,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 app.use('/api', route);
+app.use('/api', eventroute);
 
 app.get('/',(req, res) =>{
     res.send('server started already');
