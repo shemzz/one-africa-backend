@@ -27,17 +27,19 @@ const eventschema = mongoose.Schema({
     required: true
   },
   ticket: {
+    type: Object,
+    required: false,
     vendor: {
       type: String,
       required: true
     },
     link: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     vendorPhoto: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     }
   }
 });
