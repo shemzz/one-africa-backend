@@ -32,7 +32,7 @@ const eventschema = mongoose.Schema({
         }
 });
 
-const OagEvent = (module.exports = mongoose.model("OagEvent", eventschema));
+const Eventz = (module.exports = mongoose.model("Eventz", eventschema));
 
 // ticket model
 var ticketSchema = new Schema({

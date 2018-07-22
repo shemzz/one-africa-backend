@@ -4,7 +4,7 @@ const express = require('express');
 var router = express.Router();
 
 const Artist = require('../models/artist');
-const OagEvent = require('../models/events');
+const Eventz = require('../models/events');
 
 // retrieving artist data from database 
 router.get('/show_artist', (req, res, next) => {
@@ -16,6 +16,7 @@ router.get('/show_artist', (req, res, next) => {
         }
     });
 });
+
 
 // add new artist
 router.post('/add_artist', (req, res, next) => {
@@ -69,20 +70,19 @@ router.delete('/remove_artist/:id', (req, res, next) => {
 });
 
 // retrieving events data from database 
-router.get('/all_events', (req, res, next) => {
-oagevents.find(function (err, oagevents) {
+router.get('/show_event', (req, res, next) => {
+    Eventz.find(function (err, eventz) {
         if (err) { 
             res.json(err);
-            console.log(err);
         } else {
-            res.json(oagevents);
+            res.json(eventz);
         }
     });
 });
 
 // add new event
 router.post('/add_event', (req, res, next) => {
-    let newEvent = new OagEvent({
+    let newEvent = new Eventz({
         name: req.body.name,
         slug: req.body.slug,
         photo: req.body.photo,
@@ -95,7 +95,7 @@ router.post('/add_event', (req, res, next) => {
        vendorphoto: req.body.vendorphoto
        }
     });
-    newEvent.save((err, oagevents) => {
+    newEvent.save((err, eventz) => {
         if (err) {
             res.json(err);
         } else {
