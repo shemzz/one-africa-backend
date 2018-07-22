@@ -70,15 +70,15 @@ router.delete('/remove_artist/:id', (req, res, next) => {
 });
 
 // retrieving events data from database 
-router.get('/show_event', (req, res, next) => {
-    Eventz.find(function (err, eventz) {
-        if (err) { 
-            res.json(err);
-        } else {
-            res.json(eventz);
-        }
-    });
-});
+// router.get('/show_event', (req, res, next) => {
+//     Eventz.find(function (err, eventz) {
+//         if (err) { 
+//             res.json(err);
+//         } else {
+//             res.json(eventz);
+//         }
+//     });
+// });
 
 // add new event
 router.post('/add_event', (req, res, next) => {
