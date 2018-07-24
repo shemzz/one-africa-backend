@@ -4,6 +4,7 @@ const express = require('express');
 var router = express.Router();
 
 const Artist = require('../models/artist');
+const Eventz = require('../models/events');
 
 // retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
@@ -12,6 +13,17 @@ router.get('/show_artist', (req, res, next) => {
             res.json(err);
         } else {
             res.json(artists);
+        }
+    });
+});
+
+// get event
+router.get('/lineup', (req, res, next) => {
+    Eventz.find(function (err, eventz) {
+        if (err) { 
+            res.json(err);
+        } else {
+            res.json(eventz);
         }
     });
 });
@@ -65,6 +77,27 @@ router.delete('/remove_artist/:id', (req, res, next) => {
                 res.json(result);
             }
         });
+});
+
+// add new event
+router.post('/new-event', (req, res, next) => {
+    let newEvent = new Eventz({
+        name: req.body.name,
+        slug: req.body.slug,
+        photo: req.body.photo,
+       location: req.body.location,
+       address: req.body.address,
+       date: req.body.date,
+    });
+    newEvent.save((err, eventz) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json({
+                msg: "Event has been added successfully"
+            });
+        }
+    });
 });
 
 module.exports = router;

@@ -25,19 +25,7 @@ const eventschema = mongoose.Schema({
   date: {
     type: String,
     required: true
-  },
-  vendorphoto : {
-    type : mongoose.Schema.Type.ObjectId,
-    ref:'ticket'
-        }
+  }
 });
 
 const Eventz = (module.exports = mongoose.model("Eventz", eventschema));
-
-// ticket model
-var ticketSchema = new Schema({
-    vendor: [String],
-   link: [String],
-   vendorphoto: [String]
-     })
-mongoose.model('ticket', ticketSchema, 'ticket')
