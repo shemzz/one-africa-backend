@@ -5,6 +5,7 @@ var router = express.Router();
 
 const Artist = require('../models/artist');
 const Eventz = require('../models/events');
+const Newz = require("../models/newsfeed");
 
 // retrieving data from database 
 router.get('/show_artist', (req, res, next) => {
@@ -106,7 +107,7 @@ router.get('/lineup', (req, res, next) => {
 
 // add newsfeed
 router.post('/addnews', (req, res, next) => {
-    let News = new News({
+    let News = new Newz({
         title: req.body.title,
         body: req.body.body,
         date: req.body.date,
@@ -125,7 +126,7 @@ router.post('/addnews', (req, res, next) => {
 
 // get news
 router.get('/newsfeed', (req, res, next) => {
-    News.find(function (err, news) {
+    Newz.find(function (err, news) {
         if (err) { 
             res.json(err);
         } else {
