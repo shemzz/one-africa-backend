@@ -28,7 +28,7 @@ const eventschema = mongoose.Schema({
   },
   cokobar: {
     type: String,
-    required: true
+    required: false
   },
   eventbrite: {
     type: String,
