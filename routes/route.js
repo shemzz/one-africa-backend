@@ -88,6 +88,9 @@ router.post('/new-event', (req, res, next) => {
        location: req.body.location,
        address: req.body.address,
        date: req.body.date,
+       ticket1: req.body.ticket1,
+       ticket2: req.body.ticket2,
+       ticket3: req.body.ticket3
     });
     newEvent.save((err, eventz) => {
         if (err) {

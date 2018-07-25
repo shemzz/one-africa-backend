@@ -25,6 +25,18 @@ const eventschema = mongoose.Schema({
   date: {
     type: String,
     required: true
+  },
+  ticket1: {
+    type: String,
+    required: true
+  },
+  ticket2: {
+    type: String,
+    required: false
+  },
+  ticket3: {
+    type: String,
+    required: false
   }
 });
 
