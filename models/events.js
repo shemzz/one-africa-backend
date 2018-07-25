@@ -1,6 +1,25 @@
 /*jshint esversion: 6 */
 
 const mongoose = require("mongoose");
+const newsschema = mongoose.Schema({
+  title: {
+  type: String,
+  required: true
+  },
+  body: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    require: true
+  },
+  time: {
+    type: String,
+    required: false
+  }
+})
+const NewsSchema = (module.exports = mongoose.model("News", newsschema));
 
 const eventschema = mongoose.Schema({
   name: {
@@ -26,15 +45,19 @@ const eventschema = mongoose.Schema({
     type: String,
     required: true
   },
-  ticket1: {
+  cokobar: {
     type: String,
     required: true
   },
-  ticket2: {
+  eventbrite: {
     type: String,
     required: false
   },
-  ticket3: {
+  ticketmaster: {
+    type: String,
+    required: false
+  },
+  platinumlist: {
     type: String,
     required: false
   }

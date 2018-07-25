@@ -17,17 +17,6 @@ router.get('/show_artist', (req, res, next) => {
     });
 });
 
-// get event
-router.get('/lineup', (req, res, next) => {
-    Eventz.find(function (err, eventz) {
-        if (err) { 
-            res.json(err);
-        } else {
-            res.json(eventz);
-        }
-    });
-});
-
 // add new artist
 router.post('/add_artist', (req, res, next) => {
     let newArtist = new Artist({
@@ -88,9 +77,10 @@ router.post('/new-event', (req, res, next) => {
        location: req.body.location,
        address: req.body.address,
        date: req.body.date,
-       ticket1: req.body.ticket1,
-       ticket2: req.body.ticket2,
-       ticket3: req.body.ticket3
+       cokobar: req.body.cokobar,
+       eventbrite: req.body.eventbrite,
+       ticketmaster: req.body.ticketmaster,
+       platinumlist: req.body.platinumlist
     });
     newEvent.save((err, eventz) => {
         if (err) {
@@ -103,4 +93,44 @@ router.post('/new-event', (req, res, next) => {
     });
 });
 
+// get event
+router.get('/lineup', (req, res, next) => {
+    Eventz.find(function (err, eventz) {
+        if (err) { 
+            res.json(err);
+        } else {
+            res.json(eventz);
+        }
+    });
+});
+
+// add newsfeed
+router.post('/addnews', (req, res, next) => {
+    let News = new Newsschema({
+        title: req.body.title,
+        body: req.body.body,
+        date: req.body.date,
+       time: req.body.time
+    });
+    News.save((err, news) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json({
+                msg: "News has beenposted successfully"
+            });
+        }
+    });
+});
+
+// get event
+router.get('/newsfeed', (req, res, next) => {
+    Newsschema.find(function (err, news) {
+        if (err) { 
+            res.json(err);
+        } else {
+            res.json(news);
+        }
+    });
+});
 module.exports = router;
