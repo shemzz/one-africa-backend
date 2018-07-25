@@ -106,7 +106,7 @@ router.get('/lineup', (req, res, next) => {
 
 // add newsfeed
 router.post('/addnews', (req, res, next) => {
-    let News = new Newsschema({
+    let News = new News({
         title: req.body.title,
         body: req.body.body,
         date: req.body.date,
@@ -123,9 +123,9 @@ router.post('/addnews', (req, res, next) => {
     });
 });
 
-// get event
+// get news
 router.get('/newsfeed', (req, res, next) => {
-    Newsschema.find(function (err, news) {
+    News.find(function (err, news) {
         if (err) { 
             res.json(err);
         } else {

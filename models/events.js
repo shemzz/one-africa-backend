@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 const mongoose = require("mongoose");
+
 const newsschema = mongoose.Schema({
   title: {
   type: String,
@@ -16,10 +17,10 @@ const newsschema = mongoose.Schema({
   },
   time: {
     type: String,
-    required: false
+    required: true
   }
 })
-const NewsSchema = (module.exports = mongoose.model("News", newsschema));
+const News = (module.exports = mongoose.model("News", newsschema));
 
 const eventschema = mongoose.Schema({
   name: {
