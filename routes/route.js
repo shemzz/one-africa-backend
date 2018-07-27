@@ -3,6 +3,9 @@
 const express = require('express');
 var router = express.Router();
 
+var Mailchimp = require('mailchimp-api-v3');
+var mailchimp = new Mailchimp(api_key);
+
 const Artist = require('../models/artist');
 const Eventz = require('../models/events');
 const Newz = require("../models/newsfeed");
@@ -134,4 +137,35 @@ router.get('/newsfeed', (req, res, next) => {
         }
     });
 });
+
+// subscribers
+ router.post('/subscribe', (req, res) => {
+    var api_key = '0e05e68abe0e8e60f3f034946db64ebd-3b1f59cf-e12195ea';
+    var domain = 'sandboxbbf94d3430d9408b805df4180eb83fee.mailgun.org';
+    var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+     
+    // collect form data here
+    var subdata = {
+        companyName: req.body.companyName,
+        companyAddress: req.body.companyAddress,
+        contactPerson: req.body.contactPerson,
+        positionOfContact: req.body.positionOfContact,
+        phoneNumber: req.body.phoneNumber,
+        email: req.body.email,
+        website: req.body.website,
+        proposal: req.body.proposal
+    }
+    var data = {
+      from: 'New Partner WatchDog <postmaster@sandboxbbf94d3430d9408b805df4180eb83fee.mailgun.org>',
+      to: 'davidshemang@gmail.com',
+      subject: 'Partnership request from' + subdata.companyName,
+      text: 'Here are the details of the application submitted'+
+        subdata
+    };
+     
+    mailgun.messages().send(data, function (error, body) {
+      console.log(body);
+    });
+ })
+
 module.exports = router;
