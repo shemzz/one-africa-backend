@@ -4,6 +4,7 @@ var express = require ('express');
 var mongoose = require('mongoose');
 var bodyparser = require ('body-parser');
 var cors = require('cors');
+const nodemailer = require('nodemailer');
 
 var app = express();
 
@@ -67,3 +68,54 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 }
+// partner form
+app.post('/partnership', (req, res) => {
+    const output = `
+      <p>You have a new Partnership request</p>
+      <h3>Details details are</h3>
+      <ul>  
+        <li> Company Name: ${req.body.compname}</li>
+        <li>Company Address: ${req.body.compaddress}</li>
+        <li>Contact Person: ${req.body.contactperson}</li>
+        <li>Position of COntact: ${req.body.positionofcontact}</li>
+        <li>Phone Number: ${req.body.phone}</li>
+        <li>Email: ${req.body.email}</li>
+        <li>Website: ${req.body.website}</li>
+        <li>Proposal: ${req.body.proposal}</li>
+      </ul>
+    `;
+  
+    // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: 'mail.oneafricaglobal.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: 'shemang@oneafricaglobal.com', // generated ethereal user
+        pass: '123456de'  // generated ethereal password
+    },
+    tls:{
+      rejectUnauthorized:false
+    }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+      from: '"OAG Partnership Watchdog" <shemang@oneafricaglobal.com>', // sender address
+      to: 'davidshemang@gmail.com', // list of receivers
+      subject: 'New Partnership Request', // Subject line
+      text: 'Hello Manager,', // plain text body
+      html: output // html body
+  };
+  
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);   
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+  
+        res.render('contact', {msg:'Email has been sent'});
+    });
+    });
