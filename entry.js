@@ -39,7 +39,7 @@ app.get('/',(req, res) =>{
     res.send('server started already');
 });
 
-app.post('/', (req, res) =>{
+app.post('/mailchimp', (req, res) =>{
 addEmailToMailchimp(req.body.subemail);
 res.end('Sucess!!!');
 })
