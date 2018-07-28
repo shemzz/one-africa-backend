@@ -57,7 +57,7 @@ var options = { method: 'POST',
      'Content-Type': 'application/json' },
   body: 
    { FNAME: 'Subscriber',
-     email_address: req.body.subemail,
+     email_address: subemail,
      status: 'subscribed' },
   json: true };
 
