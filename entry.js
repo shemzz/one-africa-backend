@@ -57,7 +57,7 @@ var options = { method: 'POST',
      'Content-Type': 'application/json' },
   body: 
    { FNAME: 'Subscriber',
-     email_address: 'shemang@protonmail.com',
+     email_address: req.body.subemail,
      status: 'subscribed' },
   json: true };
 
