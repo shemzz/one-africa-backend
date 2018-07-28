@@ -134,4 +134,5 @@ router.get('/newsfeed', (req, res, next) => {
         }
     });
 });
+
 module.exports = router;

@@ -39,5 +39,31 @@ app.get('/',(req, res) =>{
     res.send('server started already');
 });
 
+app.post('/', (req, res) =>{
+addEmailToMailchimp(req.body.subemail);
+res.end('Sucess!!!');
+})
 app.listen(process.env.PORT || PORT)
 
+function addEmailToMailchimp(email){
+    var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://us18.api.mailchimp.com/3.0/lists/0005e81f0f/members',
+  headers: 
+   { 'Postman-Token': 'cae74e89-0fa9-48c8-bdbd-9bcaa16839b6',
+     'Cache-Control': 'no-cache',
+     Authorization: 'Basic YW55c3RyaW5nOmE5Mzc0ZWJhYjFmMmZlOWVlNDMxMjFhNWEwYzVhY2Y2LXVzMTg=',
+     'Content-Type': 'application/json' },
+  body: 
+   { FNAME: 'Subscriber',
+     email_address: 'shemang@protonmail.com',
+     status: 'subscribed' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+}
