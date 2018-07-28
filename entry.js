@@ -45,7 +45,7 @@ res.end('Sucess!!!');
 })
 app.listen(process.env.PORT || PORT)
 
-function addEmailToMailchimp(email){
+function addEmailToMailchimp(subemail){
     var request = require("request");
 
 var options = { method: 'POST',
