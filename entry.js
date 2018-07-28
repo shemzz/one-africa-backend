@@ -77,7 +77,7 @@ app.post('/partnership', (req, res) => {
         <li> Company Name: ${req.body.compname}</li>
         <li>Company Address: ${req.body.compaddress}</li>
         <li>Contact Person: ${req.body.contactperson}</li>
-        <li>Position of COntact: ${req.body.positionofcontact}</li>
+        <li>Position of Contact: ${req.body.positionofcontact}</li>
         <li>Phone Number: ${req.body.phone}</li>
         <li>Email: ${req.body.email}</li>
         <li>Website: ${req.body.website}</li>
