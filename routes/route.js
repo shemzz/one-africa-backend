@@ -152,7 +152,7 @@ Music.find(function(error, music) {
 router.post("/add_music", (req,res,next) =>{
     let Songs = new Music({
         name: req.body.name,
-        artist: req.body.title,
+        artist: req.body.artist,
         album: req.body.album,
         url: req.body.url,
         cover_art_url: req.body.cover_art_url
