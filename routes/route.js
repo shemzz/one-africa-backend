@@ -149,10 +149,10 @@ Music.find(function(error, music) {
 })
 });
 // Post Music
-router,post("/add_music", (req,res,next) =>{
+router.post("/add_music", (req,res,next) =>{
     let Songs = new Music({
         name: req.body.name,
-        title: req.body.title,
+        artist: req.body.title,
         album: req.body.album,
         url: req.body.url,
         cover_art_url: req.body.cover_art_url
