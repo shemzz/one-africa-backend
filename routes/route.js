@@ -140,7 +140,7 @@ router.get("/newsfeed", (req, res, next) => {
 
 // get music
 router.get("/music", (req, res,next) => {
-Music.find(function(error, songs) {
+Music.find(function(err, songs) {
     if (err){
         res.json(err);
     }else{
