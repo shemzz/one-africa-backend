@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-
 const express = require("express");
 var router = express.Router();
 
@@ -7,6 +6,24 @@ const Artist = require("../models/artist");
 const Eventz = require("../models/events");
 const Newz = require("../models/newsfeed");
 const Music = require("../models/music");
+const Stream = require("../models/stream");
+const StreamAdd = require("../models/stream");
+
+// add livestream paid
+router.post("/add_stream", (req,res,next) =>{
+  let streamers = new Stream ({ email: req.body.email });
+  streamers.save((err, streamers) =>{
+    if (err) {
+      res.json(err)
+    }else {
+      res.json({
+        message: "streamer added success!!!"
+      })
+    }
+  })
+})
+
+
 // retrieving data from database
 router.get("/show_artist", (req, res, next) => {
   Artist.find(function(err, artists) {
@@ -167,4 +184,7 @@ router.post("/add_music", (req,res,next) =>{
         }
     })
 })
+
+
+
 module.exports = router;
