@@ -10,8 +10,8 @@ const Stream = require("../models/stream");
 const StreamAdd = require("../models/stream");
 
 // add livestream paid
-router.post("/add_stream", (req,res,next) =>{
-  let streamers = new Stream ({ email: req.body.email });
+router.post("/add_stream_paid", (req,res,next) =>{
+  let streamers = new StreamAdd ({ email: req.body.email });
   streamers.save((err, streamers) =>{
     if (err) {
       res.json(err)
@@ -22,6 +22,22 @@ router.post("/add_stream", (req,res,next) =>{
     }
   })
 })
+
+// see paid stream emails
+router.get("/check_stream_access", (req, res, next) => {
+  StreamAdd.find(function(err, streamers) {
+    var response = [];
+    if( typeof req.query.email != 'undefined' ){
+      response = streamers.filter(function(streamers){
+        if(streamers.email=== req.query.email){
+          return streamers;
+        } 
+      });
+      }   
+    res.json(response);
+  });
+ 
+});
 
 
 // retrieving data from database
@@ -124,6 +140,49 @@ router.get("/lineup", (req, res, next) => {
     }
   });
 });
+// update event
+router.put("/update_event/:id", (req, res, next) => {
+  Eventz.findOneAndUpdate(
+    {
+      _id: req.params.id
+    },
+    {
+      $set: {
+        name: req.body.name,
+        slug: req.body.slug,
+        photo: req.body.photo,
+        location: req.body.location,
+        address: req.body.address,
+        date: req.body.date,
+        cokobar: req.body.cokobar,
+        eventbrite: req.body.eventbrite,
+        ticketmaster: req.body.ticketmaster,
+        platinumlist: req.body.platinumlis
+      }
+    },
+    function(err, result) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+// delete eventt
+router.delete("/remove_event/:id", (req, res, next) => {
+  Eventz.remove({ _id: req.params.id }, function(err, result) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json({
+        msg : "event removed"
+      });
+    }
+  });
+});
+
 
 // add newsfeed
 router.post("/addnews", (req, res, next) => {

@@ -36,6 +36,8 @@ app.use(bodyparser.json());
 
 app.use('/api', route);
 
+app.use(express.static(__dirname + '/ff'));
+
 app.get('/',(req, res) =>{
     res.send('server started already');
 });
@@ -44,7 +46,7 @@ app.post('/mailchimp', (req, res) =>{
 addEmailToMailchimp(req.body.subemail);
 res.end('Sucess!!!');
 })
-app.listen(process.env.PORT || PORT)
+app.listen(process.env.PORT || PORT);
 
 function addEmailToMailchimp(subemail){
     var request = require("request");
